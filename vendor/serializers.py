@@ -1,7 +1,9 @@
-from django.contrib.auth.models import User, Group
 from rest_framework import serializers
+from vendor.models import ResID
+
 
 class ResIDSerializer(serializers.ModelSerializer):
     class Meta:
-            model = ResID
-                    fields = ('name', 'logo')
+        model = ResID
+        fields = ('name', 'logo')
+

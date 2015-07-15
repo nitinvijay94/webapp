@@ -1,11 +1,13 @@
 from django.shortcuts import render
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.decorators import login_required
-from .models import UserMap
-from .forms import LogoImageForm
 from django.contrib import messages
 from django.http import HttpResponseRedirect
 from django.core.urlresolvers import reverse
+from rest_framework import viewsets
+from .models import UserMap, ResID
+from .forms import LogoImageForm
+from .serializers import ResIDSerializer
 
 
 def venderLogin(request):
@@ -52,3 +54,15 @@ def venderMenu(request):
 
     print usermap.resid.logo.url
     return render(request, 'vendor/menu.html', {'logoUrl': usermap.resid.logo.url, 'form': form})
+
+
+######################################################################
+#                        following : rest api part                   #
+######################################################################
+
+class ResIDViewSet(viewsets.ReadOnlyModelViewSet):
+    """
+    This viewset automatically provides `list` and `detail` actions.
+    """
+    queryset = ResID.objects.all()
+    serializer_class = ResIDSerializer
