@@ -3,8 +3,8 @@ from django.db import models
 
 class ResID(models.Model):
     name = models.CharField(max_length=100)
-    logo = models.ImageField(upload_to='images/logo',
-                             default='images/logo/logo_default.svg',
+    logo = models.ImageField(upload_to='logo/',
+                             default='logo/logo_default.svg',
                              max_length=100)
 
     def __str__(self):

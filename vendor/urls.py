@@ -8,4 +8,4 @@ urlpatterns = [
     url(r'^login/$', views.venderLogin, name='login'),
     url(r'^menu/$', views.venderMenu, name='menu'),
     url(r'^logout/$', views.venderLogout, name='logout'),
-] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
+]
