@@ -1,13 +1,3 @@
-"""
-Django settings for webapp project.
-
-For more information on this file, see
-https://docs.djangoproject.com/en/1.7/topics/settings/
-
-For the full list of settings and their values, see
-https://docs.djangoproject.com/en/1.7/ref/settings/
-"""
-
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 import os
 import dj_database_url
@@ -25,10 +15,6 @@ SECRET_KEY = '&az)4l!4f=kz1a0oue+$yo@1@$uf^%8rx-g1c954z=!dufg*!y'
 DEBUG = True
 
 TEMPLATE_DEBUG = True
-
-# allow all host headers
-ALLOWED_HOSTS = ['*']
-
 
 # Application definition
 
@@ -67,15 +53,6 @@ DATABASES = {
     }
 }
 
-# Parse database configuration from $DATABASE_URL
-# DATABASES['default'] = dj_database_url.config()
-
-# Enable Connection Pooling (if desired)
-# DATABASES['default']['ENGINE'] = 'django_postgrespool'
-
-# Honor the 'X-Forwarded-Proto' header for request.is_secure()
-# SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
-
 # https://docs.djangoproject.com/en/1.7/topics/i18n/
 LANGUAGE_CODE = 'en-us'
 TIME_ZONE = 'UTC'
@@ -90,3 +67,24 @@ USE_TZ = True
 STATIC_URL = '/static/'
 MEDIA_ROOT = '/media/sf_share/webapp/'
 MEDIA_URL = '/media/'
+
+############################################################
+# added according to heroku
+DATABASES['default'] =  dj_database_url.config()
+
+# Honor the 'X-Forwarded-Proto' header for request.is_secure()
+SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
+
+# Allow all host headers
+ALLOWED_HOSTS = ['*']
+
+# Static asset configuration
+import os
+BASE_DIR = os.path.dirname(os.path.abspath(__file__))
+STATIC_ROOT = 'staticfiles'
+STATIC_URL = '/static/'
+
+STATICFILES_DIRS = (
+    os.path.join(BASE_DIR, 'static'),
+)
+
