@@ -1,11 +1,30 @@
 from django.db import models
 
+class Hours(models.Model):
+    name = models.CharField(max_length=100)
+    open_time = models.TimeField(default = '8:00')
+    close_time = models.TimeField(default = '20:00')
+    m = models.BooleanField(default = False )
+    t = models.BooleanField(default = False )
+    w = models.BooleanField(default = False )
+    r = models.BooleanField(default = False )
+    f = models.BooleanField(default = False )
+    s = models.BooleanField(default = False )
+    h = models.BooleanField(default = False )
+
+    def __str__(self):
+        return self.name
+
+
 
 class ResID(models.Model):
     name = models.CharField(max_length=100)
     logo = models.ImageField(upload_to='logo/',
-                             default='logo/logo_default.svg',
-                             max_length=100)
+                             default='logo/PandaLogo.png',
+                             max_length=60)
+    menu = models.ImageField(upload_to='menu/',
+                             default='menu/pandamenu.jpeg',
+                             max_length=200)
 
     def __str__(self):
         return self.name
@@ -14,6 +33,7 @@ class ResID(models.Model):
 class UserMap(models.Model):
     username = models.CharField(max_length=100)
     resid = models.OneToOneField(ResID)
+    hours = models.OneToOneField(Hours)
 
     def __str__(self):
         return self.username
