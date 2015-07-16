@@ -12,21 +12,28 @@
     <link href="{% static 'vendor/tabcontent.css' %}" rel="stylesheet" type="text/css" />
     <!--    <link rel="stylesheet"  type="text/css" href="{% static 'vendor/menuStyle.css' %}" > -->
     <!--[if lt IE 9]><script src="//html5shim.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
-    <script>
-    function readURL(input) {
-	if (input.files && input.files[0]) {
-	    var reader = new FileReader();
-	    reader.onload = function (e) {
-                $('#blah1')
-                    .attr('src', e.target.result)
-                    .width(150)
-                    .height(200);
-	    };
-	    
-	    reader.readAsDataURL(input.files[0]);
-	}
-    }
+    <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.5.0/jquery.min.js">
     </script>
+    <script type="text/javascript">
+      $(document).ready(function() {
+      $('.add-item').click(function(ev) {
+        ev.preventDefault();
+        var count = $('#items-form-container').children().length;
+        var tmplMarkup = $('#item-template').html();
+        var compiledTmpl = tmplMarkup.replace(/__prefix__/g, count);
+        $('div#items-form-container').append(compiledTmpl);
+
+        // update form count
+        $('#id_item_items-TOTAL_FORMS').attr('value', count+1);
+
+        // some animate to scroll to view our new form
+        $('html, body').animate({
+                scrollTop: $("#add-item-button").position().top-200
+            }, 800);
+      });
+      });
+    </script>
+
   </head>
   
   <body style="background:#F6F9FC; font-family:Arial;">
@@ -42,44 +49,51 @@
       <div class="tabcontents">
         <div id="view1">
 	  <div style="width: 700px; margin: 0 auto; padding: 10px 0 10px;">
-	    <ul class="tabs" data-persist="true">
-	      <li><a href="#view11">Classic</a></li>
-	      <li><a href="#view12">Side Items</a></li>
-	      <li><a href="#view13">Desserts</a></li>
-	      <li><a href="#view14">Beverages</a></li>
+	    <form action="{% url 'vendor.views.vendorMenu'%}" method="post" enctype="multipart/form-data">
+	    {% csrf_token %}
+	    {{ formset.management_form }}
+	    <ul class="todo-list" id="items-form-container">
+	      {% for eachform in formset %}
+	      <li><a href="{% url 'menu' %}" class="toggle">Toggle</a> {{eachform.name}} {{eachform.price}}${{eachform.calories}} <a class="delete" href="#">Delete</a></li>
+	      {% endfor %}
 	    </ul>
-	    <div id="view11">
-	      <ul class="todo-list">
-		<ul class="todo-list">
-		  <li class="done"><a href="{% url 'menu' %}" class="toggle">Toggle</a> <input type="text" name="no1" value="Chicken Sandwich"/><input type="text" name="no1p" value="7.00">$</li>
-		  <li><a href="{% url 'menu' %}" class="toggle">Toggle</a> <input type="text" name="no2" value="Spicy Sandwich" /><input type="text" name="no2p" value="7.50">$</li>
-		  <li><a href="{% url 'menu' %}" class="toggle">Toggle</a> <input type="text" name="no3" value="Special Sandwich"/><input type="text" name="no3p" value="8.00">$</li>
-		</ul>
-	      </ul>
-	    </div>
-	    <div id="view12">
-	      <form action="{% url 'vendor.views.vendorMenu' %}" method="post" enctype="multipart/form-data">
-		{% csrf_token %}
-		<li> </li>
-	      </form>
-	    </div>
-	    <div id="view13">
-	    </div>
-	    <div id="view14">
-	    </div>
+	    <a id="add-item-button" href="#" class="btn btn-info add-item">Add another item</a><br>
+	    <input type="submit" value="Submit" name="menulistSubmit" />
+	    </form>
 	  </div>                
         </div>
         <div id="view2">
-          <b>Lunch</b>
+          <form action="{% url 'vendor.views.vendorMenu'%}" method="post" enctype="multipart/form-data">
+	    {% csrf_token %}
+	    <label>Opentime:</label>
+	    {{form.opentime}}<br>
+	    <label>Closetime:</label>
+	    {{form.closetime}}<br>
+	    <label>Monday:</label>
+	    {{form.d1}}<br>
+	    <label>Tuesday:</label>
+	    {{form.d2}}<br>
+	    <label>Wednesday:</label>
+	    {{form.d3}}<br>
+	    <label>Thurday:</label>
+	    {{form.d4}}<br>
+	    <label>Friday:</label>
+	    {{form.d5}}<br>
+	    <label>Saturday:</label>
+	    {{form.d6}}<br>
+	    <label>Sunday:</label>
+	    {{form.d7}}<br>
+	  <input type="submit" value="Submit" name="hoursSubmit" />
+	  </form>
         </div>
         <div id="view3">
-          <b>Dinner</b>
+          <b>Location</b>
         </div>
 	<div id="view4">
 	  <form class="fileupload" action="{% url 'vendor.views.vendorMenu'%}" method="post" enctype="multipart/form-data">
 	    {% csrf_token %}
 	    <label for="fileupload-1">Upload Logo</label>
-	    {{form.image}}
+	    {{form.image1}}
 	    <input type="submit" value="Submit" name="logoSubmit" />
 	  </form>
 	  <img name="logoimg" src="{{logoUrl}}" alt="your image" />
@@ -87,7 +101,7 @@
 	  <form class="fileupload" action="{% url 'vendor.views.vendorMenu'%}" method="post" enctype="multipart/form-data">
 	    {% csrf_token %}
 	    <label for="fileupload-2">Upload Menu</label>
-	    {{form.image}}
+	    {{form.image2}}
 	    <input type="submit" value="Submit" name="menuSubmit" />
 	  </form>
 	  <img name="menuimg" src="{{menuUrl}}" alt="your image" />
