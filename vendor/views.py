@@ -58,35 +58,35 @@ def vendorMenu(request):
                     predish = mydish
             else:
                 messages.error(request, "Error")
-            return render(request, 'vendor/menu.html', {'logoUrl':usermap.resid.logo.url, 'menuUrl': usermap.resid.menu.url, 'form':OneForm(), 'formset': formset})
+            return render(request, 'vendor/menu.html', {'logoUrl':usermap.resid.logo.url, 'menuUrl': usermap.resid.menu.url,  'formset': formset})
         if 'logoSubmit' in request.POST:
-            form = OneForm(request.POST, request.FILES)
-            if form.is_valid():
-                usermap.resid.logo = form.cleaned_data['image1']
+            formlogo = LogoForm(request.POST, request.FILES)
+            if formlogo.is_valid():
+                usermap.resid.logo = formlogo.cleaned_data['image']
                 usermap.resid.save()
             else:
                 messages.error(request, "Error")
-            return render(request, 'vendor/menu.html', {'logoUrl': usermap.resid.logo.url, 'menuUrl': usermap.resid.menu.url, 'form': form})
+            return render(request, 'vendor/menu.html', {'logoUrl': usermap.resid.logo.url, 'menuUrl': usermap.resid.menu.url, 'formlogo': formlogo})
         if 'menuSubmit' in request.POST:
-            form = OneForm(request.POST, request.FILES)
-            if form.is_valid():
-                usermap.resid.menu = form.cleaned_data['image2']
+            formmenu = MenuForm(request.POST, request.FILES)
+            if formmenu.is_valid():
+                usermap.resid.menu = formmenu.cleaned_data['image']
                 usermap.resid.save()
             else:
                 messages.error(request, "Error")
-            return render(request, 'vendor/menu.html', {'logoUrl': usermap.resid.logo.url, 'menuUrl': usermap.resid.menu.url, 'form': form})
+            return render(request, 'vendor/menu.html', {'logoUrl': usermap.resid.logo.url, 'menuUrl': usermap.resid.menu.url, 'formmenu': formmenu})
         if 'hoursSubmit' in request.POST:
-            form = OneForm(request.POST)
-            if form.is_valid():
-                usermap.hours.open_time = form.cleaned_data['opentime']
-                usermap.hours.close_time = form.cleaned_data['closetime']
-                usermap.hours.m = form.cleaned_data['d1']
-                usermap.hours.t = form.cleaned_data['d2']
-                usermap.hours.w = form.cleaned_data['d3']
-                usermap.hours.r = form.cleaned_data['d4']
-                usermap.hours.f = form.cleaned_data['d5']
-                usermap.hours.s = form.cleaned_data['d6']
-                usermap.hours.h = form.cleaned_data['d7']
+            formhour = HourForm(request.POST)
+            if formhour.is_valid():
+                usermap.hours.open_time = formhour.cleaned_data['opentime']
+                usermap.hours.close_time = formhour.cleaned_data['closetime']
+                usermap.hours.m = formhour.cleaned_data['d1']
+                usermap.hours.t = formhour.cleaned_data['d2']
+                usermap.hours.w = formhour.cleaned_data['d3']
+                usermap.hours.r = formhour.cleaned_data['d4']
+                usermap.hours.f = formhour.cleaned_data['d5']
+                usermap.hours.s = formhour.cleaned_data['d6']
+                usermap.hours.h = formhour.cleaned_data['d7']
                 usermap.hours.save()
             else:
                 messages.error(request, "Error")
@@ -98,7 +98,7 @@ def vendorMenu(request):
                                                         'd5': usermap.hours.f,
                                                         'd6': usermap.hours.s,
                                                         'd7': usermap.hours.h,
-                                                        'form': form})
+                                                        'formhour': formhour})
     else:
         setlist=[]
         mydish=usermap.menu.firstdish
@@ -109,8 +109,10 @@ def vendorMenu(request):
             else:
                 break
         formset = dishFormSet(initial=setlist)
-        form = OneForm()
-    return render(request, 'vendor/menu.html', {'logoUrl':usermap.resid.logo.url, 'menuUrl': usermap.resid.menu.url, 'form':form, 'formset': formset})
+        formlogo = LogoForm()
+        formmenu = MenuForm()
+        formhour = HourForm()
+    return render(request, 'vendor/menu.html', {'logoUrl':usermap.resid.logo.url, 'menuUrl': usermap.resid.menu.url, 'formlogo':formlogo, 'formmenu':formmenu, 'formhour':formhour, 'formset': formset})
  
 
 ######################################################################

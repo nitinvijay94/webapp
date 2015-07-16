@@ -66,23 +66,23 @@
           <form action="{% url 'vendor.views.vendorMenu'%}" method="post" enctype="multipart/form-data">
 	    {% csrf_token %}
 	    <label>Opentime:</label>
-	    {{form.opentime}}<br>
+	    {{formhour.opentime}}<br>
 	    <label>Closetime:</label>
-	    {{form.closetime}}<br>
+	    {{formhour.closetime}}<br>
 	    <label>Monday:</label>
-	    {{form.d1}}<br>
+	    {{formhour.d1}}<br>
 	    <label>Tuesday:</label>
-	    {{form.d2}}<br>
+	    {{formhour.d2}}<br>
 	    <label>Wednesday:</label>
-	    {{form.d3}}<br>
+	    {{formhour.d3}}<br>
 	    <label>Thurday:</label>
-	    {{form.d4}}<br>
+	    {{formhour.d4}}<br>
 	    <label>Friday:</label>
-	    {{form.d5}}<br>
+	    {{formhour.d5}}<br>
 	    <label>Saturday:</label>
-	    {{form.d6}}<br>
+	    {{formhour.d6}}<br>
 	    <label>Sunday:</label>
-	    {{form.d7}}<br>
+	    {{formhour.d7}}<br>
 	  <input type="submit" value="Submit" name="hoursSubmit" />
 	  </form>
         </div>
@@ -93,7 +93,7 @@
 	  <form class="fileupload" action="{% url 'vendor.views.vendorMenu'%}" method="post" enctype="multipart/form-data">
 	    {% csrf_token %}
 	    <label for="fileupload-1">Upload Logo</label>
-	    {{form.image1}}
+	    {{formlogo.image}}
 	    <input type="submit" value="Submit" name="logoSubmit" />
 	  </form>
 	  <img name="logoimg" src="{{logoUrl}}" alt="your image" />
@@ -101,7 +101,7 @@
 	  <form class="fileupload" action="{% url 'vendor.views.vendorMenu'%}" method="post" enctype="multipart/form-data">
 	    {% csrf_token %}
 	    <label for="fileupload-2">Upload Menu</label>
-	    {{form.image2}}
+	    {{formmenu.image}}
 	    <input type="submit" value="Submit" name="menuSubmit" />
 	  </form>
 	  <img name="menuimg" src="{{menuUrl}}" alt="your image" />

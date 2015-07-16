@@ -7,9 +7,13 @@ class dishForm(forms.Form):
     price = forms.FloatField()
     calories = forms.FloatField()
 
-class OneForm(forms.Form):
-    image1 = forms.ImageField()
-    image2 = forms.ImageField()
+class LogoForm(forms.Form):
+    image = forms.ImageField()
+
+class MenuForm(forms.Form):
+    image = forms.ImageField()
+
+class HourForm(forms.Form):
     opentime = forms.TimeField()
     closetime = forms.TimeField()
     d1 = forms.BooleanField()
