@@ -5,10 +5,10 @@ from django.contrib import messages
 from django.http import HttpResponseRedirect
 from django.core.urlresolvers import reverse
 from rest_framework import viewsets
-from .models import UserMap, ResID
-from .forms import LogoImageForm
-from .serializers import ResIDSerializer
-
+from .models import UserMap, ResID, Hours
+from .forms import *
+from .serializers import ResIDSerializer, HoursSerializer
+from django.http import HttpResponse
 
 def venderLogin(request):
     state = ""
@@ -37,7 +37,7 @@ def venderLogout(request):
 
 
 @login_required(login_url='login')
-def venderMenu(request):
+def vendorMenu(request):
     username = request.user.username  # get the login username
     usermap = UserMap.objects.get(username=username)  # get the table entry
     if request.method == 'POST':
@@ -48,13 +48,19 @@ def venderMenu(request):
                 usermap.resid.save()
             else:
                 messages.error(request, "Error")
-        return render(request, 'vendor/menu.html', {'logoUrl': usermap.resid.logo.url, 'form': form})
+            return render(request, 'vendor/menu.html', {'logoUrl': usermap.resid.logo.url, 'menuUrl': usermap.resid.menu.url, 'form': form})
+        if 'menuSubmit' in request.POST:
+            form = LogoImageForm(request.POST, request.FILES)
+            if form.is_valid():
+                usermap.resid.menu = form.cleaned_data['image']
+                usermap.resid.save()
+            else:
+                messages.error(request, "Error")
+            return render(request, 'vendor/menu.html', {'logoUrl': usermap.resid.logo.url, 'menuUrl': usermap.resid.menu.url, 'form': form})
     else:
         form = LogoImageForm()
-
-    print usermap.resid.logo.url
-    return render(request, 'vendor/menu.html', {'logoUrl': usermap.resid.logo.url, 'form': form})
-
+    return render(request, 'vendor/menu.html', {'logoUrl':usermap.resid.logo.url, 'menuUrl': usermap.resid.menu.url, 'form':form})
+ 
 
 ######################################################################
 #                        following : rest api part                   #

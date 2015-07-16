@@ -33,9 +33,9 @@
 
     <div style="width: 800px; margin: 0 auto; padding: 120px 0 40px;">
       <ul class="tabs" data-persist="true">
-        <li><a href="#view1">Breakfast</a></li>
-        <li><a href="#view2">Lunch</a></li>
-        <li><a href="#view3">Dinner</a></li>
+        <li><a href="#view1">Menu</a></li>
+        <li><a href="#view2">Hours</a></li>
+        <li><a href="#view3">Locations</a></li>
 	<li><a href="#view4">Image Upload</a></li>
 	<li><a href="#view5">Food Truck Tab</a></li>
       </ul>
@@ -58,6 +58,10 @@
 	      </ul>
 	    </div>
 	    <div id="view12">
+	      <form action="{% url 'vendor.views.vendorMenu' %}" method="post" enctype="multipart/form-data">
+		{% csrf_token %}
+		<li> </li>
+	      </form>
 	    </div>
 	    <div id="view13">
 	    </div>
@@ -72,18 +76,21 @@
           <b>Dinner</b>
         </div>
 	<div id="view4">
-	  <div class="fileupload">
+	  <form class="fileupload" action="{% url 'vendor.views.vendorMenu'%}" method="post" enctype="multipart/form-data">
+	    {% csrf_token %}
 	    <label for="fileupload-1">Upload Logo</label>
-	    <input id="fileupload-1" type="file" name="uploaded" onchange="readURL(this);"/>
-	  </div>
-	  <img id="blah1" src="#" alt="your image" />
-	  
+	    {{form.image}}
+	    <input type="submit" value="Submit" name="logoSubmit" />
+	  </form>
+	  <img name="logoimg" src="{{logoUrl}}" alt="your image" />
 	  <br>
-	  <div class="fileupload">
+	  <form class="fileupload" action="{% url 'vendor.views.vendorMenu'%}" method="post" enctype="multipart/form-data">
+	    {% csrf_token %}
 	    <label for="fileupload-2">Upload Menu</label>
-	    <input id="fileupload-2" type="file" name="uploaded" />
-	  </div>
-	  <img id="blah2" src="#" alt="your image" />
+	    {{form.image}}
+	    <input type="submit" value="Submit" name="menuSubmit" />
+	  </form>
+	  <img name="menuimg" src="{{menuUrl}}" alt="your image" />
         </div>
 	<div id="view5">
           <b>Food Truck Tab</b>
