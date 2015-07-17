@@ -50,7 +50,6 @@ class UserMap(models.Model):
     username = models.CharField(max_length=100)
     resid = models.OneToOneField(ResID)
     hours = models.OneToOneField(Hours)
-    menu = models.OneToOneField(Menus)
 
     def __str__(self):
         return self.username
