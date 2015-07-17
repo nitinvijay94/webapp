@@ -66,23 +66,23 @@
           <form action="{% url 'vendor.views.vendorMenu'%}" method="post" enctype="multipart/form-data">
 	    {% csrf_token %}
 	    <label>Opentime:</label>
-	    {{formhour.opentime}}<br>
+	    {{formhour.open_time}}<br>
 	    <label>Closetime:</label>
-	    {{formhour.closetime}}<br>
+	    {{formhour.close_time}}<br>
 	    <label>Monday:</label>
-	    {{formhour.d1}}<br>
+	    {{formhour.m}}<br>
 	    <label>Tuesday:</label>
-	    {{formhour.d2}}<br>
+	    {{formhour.t}}<br>
 	    <label>Wednesday:</label>
-	    {{formhour.d3}}<br>
+	    {{formhour.w}}<br>
 	    <label>Thurday:</label>
-	    {{formhour.d4}}<br>
+	    {{formhour.r}}<br>
 	    <label>Friday:</label>
-	    {{formhour.d5}}<br>
+	    {{formhour.f}}<br>
 	    <label>Saturday:</label>
-	    {{formhour.d6}}<br>
+	    {{formhour.s}}<br>
 	    <label>Sunday:</label>
-	    {{formhour.d7}}<br>
+	    {{formhour.h}}<br>
 	  <input type="submit" value="Submit" name="hoursSubmit" />
 	  </form>
         </div>
