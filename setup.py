@@ -10,7 +10,7 @@ from vendor.models import *
 
 resid1 = ResID(name='panda')
 resid1.save()
-hours1 = Hours(name='panda')
+hours1 = Hours()
 hours1.save()
 emptydish1 = Dish(name='', resid=resid1)
 emptydish1.save()
@@ -25,7 +25,7 @@ usermap1.save()
 
 resid2 = ResID(name='chickenfila')
 resid2.save()
-hours2 = Hours(name='chickenfila')
+hours2 = Hours()
 hours2.save()
 emptydish2 = Dish(name='', resid=resid2)
 emptydish2.save()
