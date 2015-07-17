@@ -16,13 +16,6 @@ class Hours(models.Model):
         return self.name
 
 
-class Menus(models.Model):
-    name = models.CharField(max_length=100)
-
-    def __str__(self):
-        return self.name
-
-
 class ResID(models.Model):
     name = models.CharField(max_length=100)
     logo = models.ImageField(upload_to='logo/',
@@ -41,7 +34,19 @@ class Dish(models.Model):
     price = models.FloatField(default="7.00")
     calories = models.FloatField(default="100.00")
     resid = models.ForeignKey(ResID)
-    
+
+    def __str__(self):
+        return self.name
+
+
+class Location(models.Model):
+    name = models.CharField(max_length=100)
+
+    # latitude and longitude in degrees
+    # the default value is the poition of Atlanta
+    latitude = models.FloatField(default="33.7")
+    longitude = models.FloatField(default="-84.4")
+
     def __str__(self):
         return self.name
 
@@ -50,6 +55,7 @@ class UserMap(models.Model):
     username = models.CharField(max_length=100)
     resid = models.OneToOneField(ResID)
     hours = models.OneToOneField(Hours)
+    loc = models.OneToOneField(Location)
 
     def __str__(self):
         return self.username

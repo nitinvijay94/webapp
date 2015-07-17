@@ -12,57 +12,6 @@
     <link href="{% static 'vendor/tabcontent.css' %}" rel="stylesheet" type="text/css" />
     <!--    <link rel="stylesheet"  type="text/css" href="{% static 'vendor/menuStyle.css' %}" > -->
     <!--[if lt IE 9]><script src="//html5shim.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
-    <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.5.0/jquery.min.js">
-    </script>
-    <script type="text/javascript">
-    $(document).ready(function() {
-	$('.add-item').click(function(ev) {
-            ev.preventDefault();
-            var count = $('#items-form-container').children().length;
-            var tmplMarkup = $('#item-template').html();
-            var compiledTmpl = tmplMarkup.replace(/__prefix__/g, count);
-            $('div#items-form-container').append(compiledTmpl);
-
-            // update form count
-            $('#id_item_items-TOTAL_FORMS').attr('value', count+1);
-
-            // some animate to scroll to view our new form
-            $('html, body').animate({
-                scrollTop: $("#add-item-button").position().top-200
-            }, 800);
-	});
-    });
-    </script>
-    
-    <!-- js used to add another item in the menu -->
-    <script>
-    function addMenu(menuID) {
-	var menu = document.getElementById(menuID);
-	var newItem = document.createElement("li");
-	
-        var newInput1 = document.createElement("input");
-        newInput1.setAttribute("value", "name");
-        var newInput2 = document.createElement("input");
-        newInput2.setAttribute("value", "0"); 
-        var newInput3 = document.createElement("input");
-        newInput3.setAttribute("value", "0");
-	
-        newItem.appendChild(newInput1);
-        newItem.appendChild(newInput2);
-        newItem.appendChild(newInput3);
-	
-	menu.appendChild(newItem);
-    }
-
-    /* add item : make sure to execute after django finishing rendering page */
-    $(document).ready(function(){
-	$("#addItem").click(function(){
-            addMenu("items-form-container");
-	});
-    });
-    </script>
-    
-
   </head>
   
   <body style="background:#F6F9FC; font-family:Arial;">
@@ -83,7 +32,7 @@
 	      {{ formset.management_form }}
 	      <ul class="todo-list" id="items-form-container">
 		{% for eachform in formset %}
-		<li><a class="toggle">Toggle</a> {{eachform.name}} &nbsp&nbsp {{eachform.price}}$ &nbsp&nbsp {{eachform.calories}} <a class="delete" href="#">Delete</a></li>
+		<li><div  class="toggle">Toggle</div> {{eachform.name}} &nbsp&nbsp {{eachform.price}}$ &nbsp&nbsp {{eachform.calories}} &nbsp&nbsp Delete{{eachform.isdelete}} </li>
 		{% endfor %}
 	      </ul>
 	      <input type="submit" value="Add another item" name="addDishSubmit" /> 
@@ -94,30 +43,42 @@
         <div id="view2">
           <form action="{% url 'vendor.views.vendorMenu'%}" method="post" enctype="multipart/form-data">
 	    {% csrf_token %}
-	    <label>Opentime:</label>
-	    {{formhour.open_time}}<br>
-	    <label>Closetime:</label>
-	    {{formhour.close_time}}<br>
-	    <label>Monday:</label>
-	    {{formhour.m}}<br>
-	    <label>Tuesday:</label>
-	    {{formhour.t}}<br>
-	    <label>Wednesday:</label>
-	    {{formhour.w}}<br>
-	    <label>Thurday:</label>
-	    {{formhour.r}}<br>
-	    <label>Friday:</label>
-	    {{formhour.f}}<br>
-	    <label>Saturday:</label>
-	    {{formhour.s}}<br>
-	    <label>Sunday:</label>
-	    {{formhour.h}}<br>
+	    <ul class="todo-list" id="items-form-container">
+	      <label>Opentime:</label>
+	      {{formhour.open_time}}<br></ul>
+	    <ul class="todo-list" id="items-form-container">
+	      <label>Closetime:</label>
+	      {{formhour.close_time}}<br></ul>
+	    <ul class="todo-list" id="items-form-container">
+	      <label>Monday:</label>
+	      {{formhour.m}}<br></ul>
+	    <ul class="todo-list" id="items-form-container">
+	      <label>Tuesday:</label>
+	      {{formhour.t}}<br></ul>
+	    <ul class="todo-list" id="items-form-container">
+	      <label>Wednesday:</label>
+	      {{formhour.w}}<br></ul>
+	    <ul class="todo-list" id="items-form-container">
+	      <label>Thurday:</label>
+	      {{formhour.r}}<br></ul>
+	    <ul class="todo-list" id="items-form-container">
+	      <label>Friday:</label>
+	      {{formhour.f}}<br></ul>
+	    <ul class="todo-list" id="items-form-container">
+	      <label>Saturday:</label>
+	      {{formhour.s}}<br></ul>
+	    <ul class="todo-list" id="items-form-container">
+	      <label>Sunday:</label>
+	      {{formhour.h}}<br></ul>
+	    
 	    <input type="submit" value="Submit" name="hoursSubmit" />
 	  </form>
         </div>
-        <div id="view3">
+
+	<div id="view3">
           <b>Location</b>
         </div>
+	
 	<div id="view4">
 	  <form class="fileupload" action="{% url 'vendor.views.vendorMenu'%}" method="post" enctype="multipart/form-data">
 	    {% csrf_token %}
@@ -125,79 +86,29 @@
 	    {{formlogo.image}}
 	    <input type="submit" value="Submit" name="logoSubmit" />
 	  </form>
-	  <img name="logoimg" src="{{logoUrl}}" alt="your image" />
+	  <img name="logoimg" src="{{logoUrl}}" alt="your image" width="100" height="100"/>
 	  <br>
 	  <form class="fileupload" action="{% url 'vendor.views.vendorMenu'%}" method="post" enctype="multipart/form-data">
 	    {% csrf_token %}
 	    <label for="fileupload-2">Upload Menu</label>
 	    {{formmenu.image}}
-	    <input type="submit" value="Submit" name="menuSubmit" />
+	    <input type="submit" value="Submit" name="menuSubmit" width="400" height="400"/>
 	  </form>
 	  <img name="menuimg" src="{{menuUrl}}" alt="your image" />
         </div>
+	
 	<div id="view5">
           <b>Food Truck Tab</b>
 
         </div>
 
       </div>
+      
+      <p style="text-align:right;">
+	<a class ="logout" href="{% url 'logout' %}"> logout </a>
+      </p>
+      
     </div>
-    
-    <p style="text-align:right;">
-      <a class ="logout" href="{% url 'logout' %}"> logout </a>
-    </p>
-    <!--
-    <div class="containertime">
-    <section class="todo">
-    <ul class="todo-controls">
-    <li class="middle">Chicken fil A</li>
-    <li class="right"><a href="index.html" class="icon-settings">Settings</a></li>
-    </ul>
-
-    <ul class="todo-list">
-    <li class="done"><a href="index.html" class="toggle">Toggle</a> Breakfast</li>
-    <li><a href="index.html" class="toggle">Toggle</a> Lunch</li>
-    <li><a href="index.html" class="toggle">Toggle</a> Dinner</li>
-    </ul>
-    </section>
-    </div>
-
-
-    <div class="containercatagory">
-    <section class="todo">
-    <ul class="todo-controls">
-    <li><a href="index.html" class="icon-add">Add</a></li>
-    <li><a href="index.html" class="icon-delete">Delete</a></li>
-    <li>Breakfast</li>
-    <li class="right"><a href="index.html" class="icon-settings">Settings</a></li>
-    </ul>
-
-    <ul class="todo-list">
-    <li class="done"><a href="index.html" class="toggle">Toggle</a> Burgers</li>
-    <li><a href="index.html" class="toggle">Toggle</a> Desserts</li>
-    <li><a href="index.html" class="toggle">Toggle</a> Meals</li>
-    </ul>
-    </section>
-    </div>
-
-
-    <div class="containerdishes">
-    <section class="dishestodo">
-    <ul class="todo-controls">
-    <li><a href="index.html" class="icon-add">Add</a></li>
-    <li><a href="index.html" class="icon-delete">Delete</a></li>
-    <li>Dishes</li>
-    <li class="right"><a href="index.html" class="icon-settings">Settings</a></li>
-    </ul>
-
-    <ul class="todo-list">
-    <li class="done"><a href="index.html" class="toggle">Toggle</a> <input type="text" name="no1" value="Chicken Sandwich"/><input type="text" name="no1p" value="7.00">$</li>
-    <li><a href="index.html" class="toggle">Toggle</a> <input type="text" name="no2" value="Spicy Sandwich" /><input type="text" name="no2p" value="7.50">$</li>
-    <li><a href="index.html" class="toggle">Toggle</a> <input type="text" name="no3" value="Special Sandwich"/><input type="text" name="no3p" value="8.00">$</li>
-    </ul>
-    </section>
-    </div>
-    -->
 
   </body>
 </html>
