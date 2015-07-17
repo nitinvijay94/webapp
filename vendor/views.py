@@ -42,7 +42,7 @@ def updateDishes(formset, resid):
     allDishes = Dish.objects.filter(resid__exact=resid)
     allDishes.delete()          # first delete all existing entries
     for form in formset:        # then add new entries
-        if form.cleaned_data['isdelete']:
+        if form.cleaned_data['isdelete'] is False:
             mydish = Dish(name=form.cleaned_data['name'],
                           price=form.cleaned_data['price'],
                           calories=form.cleaned_data['calories'],
