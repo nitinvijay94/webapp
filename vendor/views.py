@@ -45,7 +45,9 @@ def vendorMenu(request):
     formlogo = LogoForm()
     formmenu = MenuForm()
     if request.method == 'POST':
-        
+
+        ######################################################################
+        #  actions taken when user change the menu
         if 'menulistSubmit' in request.POST:
             formset = dishFormSet(request.POST)
             if formset.is_valid():
@@ -62,7 +64,9 @@ def vendorMenu(request):
             else:
                 messages.error(request, "Error")
             return render(request, 'vendor/menu.html', {'logoUrl':usermap.resid.logo.url, 'menuUrl': usermap.resid.menu.url, 'formhour':HourForm(instance=usermap.hours),  'formset': formset, 'formlogo':formlogo, 'formmenu':formmenu})
-        
+
+        ######################################################################
+        #  actions taken when user change the logo
         if 'logoSubmit' in request.POST:
             formlogo = LogoForm(request.POST, request.FILES)
             if formlogo.is_valid():
@@ -71,7 +75,9 @@ def vendorMenu(request):
             else:
                 messages.error(request, "Error")
             return render(request, 'vendor/menu.html', {'logoUrl': usermap.resid.logo.url, 'menuUrl': usermap.resid.menu.url, 'formhour':HourForm(instance=usermap.hours), 'formlogo': formlogo, 'formmenu':formmenu})
-        
+
+        ######################################################################
+        #  actions taken when user change the menu picture
         if 'menuSubmit' in request.POST:
             formmenu = MenuForm(request.POST, request.FILES)
             if formmenu.is_valid():
@@ -80,7 +86,9 @@ def vendorMenu(request):
             else:
                 messages.error(request, "Error")
             return render(request, 'vendor/menu.html', {'logoUrl': usermap.resid.logo.url, 'menuUrl': usermap.resid.menu.url, 'formhour':HourForm(instance=usermap.hours), 'formmenu': formmenu, 'formlogo':formlogo})
-        
+
+        ######################################################################
+        #  actions taken when user change the hours
         if 'hoursSubmit' in request.POST:
             formhour = HourForm(request.POST)
             if formhour.is_valid():
@@ -97,6 +105,7 @@ def vendorMenu(request):
             else:
                 messages.error(request, "Error")
             return render(request, 'vendor/menu.html', {'logoUrl': usermap.resid.logo.url, 'menuUrl': usermap.resid.menu.url, 'formhour': formhour, 'formlogo':formlogo, 'formmenu':formmenu})
+        
     else:
         setlist=[]
         mydish=usermap.menu.firstdish
