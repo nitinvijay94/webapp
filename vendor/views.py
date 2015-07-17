@@ -110,21 +110,21 @@ def vendorMenu(request):
             return render(request, 'vendor/menu.html', {'logoUrl': usermap.resid.logo.url, 'menuUrl': usermap.resid.menu.url, 'formhour': formhour, 'formlogo':formlogo, 'formmenu':formmenu})
 
     
-    else:
-        setlist=[]
-        mydish=usermap.menu.firstdish
-        for i in range(0,1000):
-            if mydish.nextdish != None:
-                setlist.append({'name': mydish.name, 'price': mydish.price, 'calories': mydish.calories})
-                mydish=mydish.nextdish
-            else:
-                break
+ 
+    setlist=[]
+    mydish=usermap.menu.firstdish
+    for i in range(0,1000):
+        if mydish.nextdish != None:
+            setlist.append({'name': mydish.name, 'price': mydish.price, 'calories': mydish.calories})
+            mydish=mydish.nextdish
+        else:
+            break
         formset = dishFormSet(initial=setlist)
         formlogo = LogoForm()
         formmenu = MenuForm()
         formhour = HourForm(instance=usermap.hours)
-    
-        return render(request, 'vendor/menu.html', {'logoUrl':usermap.resid.logo.url, 'menuUrl': usermap.resid.menu.url, 'formlogo':formlogo, 'formmenu':formmenu, 'formhour':formhour, 'formset': formset})
+        
+    return render(request, 'vendor/menu.html', {'logoUrl':usermap.resid.logo.url, 'menuUrl': usermap.resid.menu.url, 'formlogo':formlogo, 'formmenu':formmenu, 'formhour':formhour, 'formset': formset})
 
 
 ######################################################################
