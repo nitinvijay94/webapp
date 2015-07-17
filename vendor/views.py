@@ -159,8 +159,8 @@ def vendorMenu(request):
                            'menuUrl': usermap.resid.menu.url,
                            'formset': formset,
                            'formhour': HourForm(instance=usermap.hours),
-                           'formlogo': formlogo,
-                           'formmenu': formmenu})
+                           'formlogo': LogoForm(),
+                           'formmenu': MenuForm()})
 
     ######################################################################
     # default GET behaviour
