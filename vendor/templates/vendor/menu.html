@@ -34,15 +34,13 @@
 		{% for eachform in formset %}
 		<li><div  class="toggle">Toggle</div> {{eachform.name}} &nbsp&nbsp {{eachform.price}}$ &nbsp&nbsp {{eachform.calories}} &nbsp&nbsp Delete{{eachform.isdelete}} </li>
 		{% endfor %}
+
+		<li style="text-align:right"> <input type="submit" value="Add another item" name="addDishSubmit" class="myButton" /> </li>
 	      </ul>
 	      
-	      <ul class="todo-list">
-		<li>
-		  <input type="submit" value="Add another item" name="addDishSubmit" class="myButton" />
-		</li>
-	      </ul>
+	      <br>
+	      <p style="text-align:center"><input type="submit" value="Submit" name="menulistSubmit" class="myButton2" /> </p>
 	      
-	      <input type="submit" value="Submit" name="menulistSubmit" />
 	    </form>
 	  </div>                
         </div>
@@ -76,8 +74,8 @@
 	    <ul class="todo-list" id="items-form-container">
 	      <label>Sunday:</label>
 	      {{formhour.h}}<br></ul>
-	    
-	    <input type="submit" value="Submit" name="hoursSubmit" />
+
+	    <p style="text-align:center"><input type="submit" value="Submit" name="hoursSubmit" class="myButton2" /> </p>
 	  </form>
         </div>
 
