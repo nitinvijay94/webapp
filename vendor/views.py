@@ -126,6 +126,7 @@ def vendorMenu(request):
         ######################################################################
         #  actions taken when user add dish to the menu
         if 'addDishSubmit' in request.POST:
+            setlist = getDishes(usermap)
             setlist.append({'name': 'name', 'price': 0, 'calories': 0})
             formset = dishFormSet(initial=setlist)
             return render(request, 'vendor/menu.html', {'formset': formset})
