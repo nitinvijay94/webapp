@@ -1,7 +1,6 @@
 from django.db import models
 
 class Hours(models.Model):
-    name = models.CharField(max_length=100)
     open_time = models.TimeField(default = '8:00')
     close_time = models.TimeField(default = '20:00')
     m = models.BooleanField(default = True )
@@ -13,7 +12,7 @@ class Hours(models.Model):
     h = models.BooleanField(default = False )
 
     def __str__(self):
-        return self.name
+        return self.open_time
 
 
 class ResID(models.Model):
@@ -48,7 +47,7 @@ class Location(models.Model):
     longitude = models.FloatField(default="-84.4")
 
     def __str__(self):
-        return self.name
+        return self.address
 
 
 class UserMap(models.Model):
