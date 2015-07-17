@@ -44,6 +44,8 @@ def vendorMenu(request):
     dishFormSet = formset_factory(dishForm, extra=1)
     formlogo = LogoForm()
     formmenu = MenuForm()
+    formhour = HourForm()
+    
     if request.method == 'POST':
 
         ######################################################################
@@ -120,7 +122,7 @@ def vendorMenu(request):
         formmenu = MenuForm()
         formhour = HourForm(instance=usermap.hours)
     return render(request, 'vendor/menu.html', {'logoUrl':usermap.resid.logo.url, 'menuUrl': usermap.resid.menu.url, 'formlogo':formlogo, 'formmenu':formmenu, 'formhour':formhour, 'formset': formset})
- 
+
 
 ######################################################################
 #                        following : rest api part                   #
