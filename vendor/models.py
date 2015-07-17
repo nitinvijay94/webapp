@@ -11,7 +11,7 @@ class Hours(models.Model):
     f = models.BooleanField(default=True)
     s = models.BooleanField(default=False)
     h = models.BooleanField(default=False)
-    leftTime = models.TimeField(blank=True, default='1:00')  # only works for food truck
+    leftTime = models.TimeField(default='1:00')  # only works for food truck
 
     def __str__(self):
         return self.open_time
