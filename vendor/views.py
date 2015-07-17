@@ -178,15 +178,16 @@ def vendorMenu(request):
             return render(request, 'vendor/menu.html',
                           {'logoUrl': usermap.resid.logo.url,
                            'menuUrl': usermap.resid.menu.url,
-                           'formlocation': LocationForm(instance=usermap.loc),
                            'formset': formset,
-                           'formhour': formhour,
+                           'formhour': HourForm(instance=usermap.hours),
                            'formlogo': LogoForm(),
-                           'formmenu': MenuForm()})
+                           'formmenu': MenuForm(),
+                           'formlocation': LocationForm(instance=usermap.loc)})
 
     ######################################################################
     # default GET behaviour
     formset = getFormSet(usermap.resid)
+    print LocationForm(instance=usermap.loc)
     return render(request, 'vendor/menu.html',
                   {'logoUrl': usermap.resid.logo.url,
                    'menuUrl': usermap.resid.menu.url,
