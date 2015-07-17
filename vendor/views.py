@@ -155,6 +155,25 @@ def vendorMenu(request):
                            'formlocation': LocationForm(instance=usermap.loc)})
 
         ######################################################################
+        #  actions taken when user change the leftTime
+        if 'leftTimeSubmit' in request.POST:
+            formset = getFormSet(usermap.resid)
+            formhour = HourForm(request.POST)
+            if formhour.is_valid():
+                usermap.hours.leftTime = formhour.cleaned_data['leftTime']
+                usermap.hours.save()
+            else:
+                messages.error(request, "Error")
+            return render(request, 'vendor/menu.html',
+                          {'logoUrl': usermap.resid.logo.url,
+                           'menuUrl': usermap.resid.menu.url,
+                           'formset': formset,
+                           'formhour': formhour,
+                           'formlogo': LogoForm(),
+                           'formmenu': MenuForm(),
+                           'formlocation': LocationForm(instance=usermap.loc)})
+        
+        ######################################################################
         #  actions taken when user add dish to the menu
         if 'addDishSubmit' in request.POST:
             formset = getFormSet(usermap.resid, 1)

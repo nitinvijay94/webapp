@@ -119,7 +119,17 @@
         </div>
 	
 	<div id="view5">
-          <b>Food Truck Tab</b>
+	  <form action="{% url 'vendor.views.vendorMenu'%}" method="post" enctype="multipart/form-data">
+	    {% csrf_token %}
+	    <ul class="todo-list">
+	      <li>
+		<label><b>Approximated Left Time : </b></label>
+		{{formhour.leftTime}}
+	      </li>
+	    </ul>
+	    
+	    <p style="text-align:center"><input type="submit" value="Submit" name="leftTimeSubmit" class="myButton2" /> </p>
+	  </form>
 
         </div>
 
