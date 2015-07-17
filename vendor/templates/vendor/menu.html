@@ -99,7 +99,8 @@
 	    <p style="text-align:center"><input type="submit" value="Submit" name="locSubmit" class="myButton2" /> </p>
 	  </form>
         </div>
-	
+
+	<!-- upload figures  -->
 	<div id="view4">
 	  <form class="fileupload" action="{% url 'vendor.views.vendorMenu'%}" method="post" enctype="multipart/form-data">
 	    {% csrf_token %}
@@ -118,6 +119,7 @@
 	  <img name="menuimg" src="{{menuUrl}}" alt="your image" />
         </div>
 	
+	<!-- update the left time -->
 	<div id="view5">
 	  <form action="{% url 'vendor.views.vendorMenu'%}" method="post" enctype="multipart/form-data">
 	    {% csrf_token %}

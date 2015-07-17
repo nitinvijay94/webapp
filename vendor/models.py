@@ -2,16 +2,16 @@ from django.db import models
 
 
 class Hours(models.Model):
-    open_time = models.TimeField(default='8:00')
-    close_time = models.TimeField(default='20:00')
-    m = models.BooleanField(default=True)
-    t = models.BooleanField(default=True)
-    w = models.BooleanField(default=True)
-    r = models.BooleanField(default=True)
-    f = models.BooleanField(default=True)
-    s = models.BooleanField(default=False)
-    h = models.BooleanField(default=False)
-    leftTime = models.TimeField(default='1:00')  # only works for food truck
+    open_time = models.TimeField(blank=True, default='8:00')
+    close_time = models.TimeField(blank=True, default='20:00')
+    m = models.BooleanField(blank=True, default=True)
+    t = models.BooleanField(blank=True, default=True)
+    w = models.BooleanField(blank=True, default=True)
+    r = models.BooleanField(blank=True, default=True)
+    f = models.BooleanField(blank=True, default=True)
+    s = models.BooleanField(blank=True, default=False)
+    h = models.BooleanField(blank=True, default=False)
+    leftTime = models.TimeField(blank=True, default='1:00')  # only works for food truck
 
     def __str__(self):
         return self.open_time
