@@ -108,7 +108,8 @@ def vendorMenu(request):
             else:
                 messages.error(request, "Error")
             return render(request, 'vendor/menu.html', {'logoUrl': usermap.resid.logo.url, 'menuUrl': usermap.resid.menu.url, 'formhour': formhour, 'formlogo':formlogo, 'formmenu':formmenu})
-        
+
+    """
     else:
         setlist=[]
         mydish=usermap.menu.firstdish
@@ -122,6 +123,7 @@ def vendorMenu(request):
         formlogo = LogoForm()
         formmenu = MenuForm()
         formhour = HourForm(instance=usermap.hours)
+    """
     return render(request, 'vendor/menu.html', {'logoUrl':usermap.resid.logo.url, 'menuUrl': usermap.resid.menu.url, 'formlogo':formlogo, 'formmenu':formmenu, 'formhour':formhour, 'formset': formset})
 
 
