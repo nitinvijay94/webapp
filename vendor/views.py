@@ -38,18 +38,15 @@ def venderLogout(request):
     return render(request, 'vendor/logout.html')
 
 
-def updateDishes(request, resid):
+def updateDishes(formset, resid):
     allDishes = Dish.objects.filter(resid__exact=resid)
     allDishes.delete()          # first delete all existing entries
-    formset = dishFormSet(request.POST, extra=0)
     for form in formset:        # then add new entries
-        mydish = Dish(name="", price=0.0, calories=0.0)
-        mydish.name = form.cleaned_data['name']
-        mydish.price = form.cleaned_data['price']
-        mydish.calories = form.cleaned_data['calories']
+        mydish = Dish(name=form.cleaned_data['name'],
+                price=form.cleaned_data['price'],
+                calories=form.cleaned_data['calories'],
+                resid=resid)
         mydish.save()
-
-    return formset
 
 
 def getFormSet(resid, addNum=0):
@@ -79,15 +76,7 @@ def vendorMenu(request):
         if 'menulistSubmit' in request.POST:
             formset = dishFormSet(request.POST)
             if formset.is_valid():
-                print formset
-                allDishes = Dish.objects.all()
-                allDishes.delete()  # first delete all existing entries
-                for form in formset:  # then add new entries
-                    mydish = Dish(name="", price=0.0, calories=0.0)
-                    mydish.name = form.cleaned_data['name']
-                    mydish.price = form.cleaned_data['price']
-                    mydish.calories = form.cleaned_data['calories']
-                    mydish.save()
+                updateDishes(formset, usermap.resid)
             else:
                 messages.error(request, "Error")
             return render(request, 'vendor/menu.html',

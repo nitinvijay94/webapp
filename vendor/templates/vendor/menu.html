@@ -83,7 +83,7 @@
 	      {{ formset.management_form }}
 	      <ul class="todo-list" id="items-form-container">
 		{% for eachform in formset %}
-		<li><a href="{% url 'menu' %}" class="toggle">Toggle</a> {{eachform.name}} {{eachform.price}}${{eachform.calories}} <a class="delete" href="#">Delete</a></li>
+		<li><a class="toggle">Toggle</a> {{eachform.name}} &nbsp&nbsp {{eachform.price}}$ &nbsp&nbsp {{eachform.calories}} <a class="delete" href="#">Delete</a></li>
 		{% endfor %}
 	      </ul>
 	      <input type="submit" value="Add another item" name="addDishSubmit" /> 
