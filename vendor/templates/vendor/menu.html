@@ -53,6 +53,13 @@
 	
 	menu.appendChild(newItem);
     }
+
+    /* add item */
+    $(document).ready(function(){
+	$("items-form-container").click(function(){
+            addMenu("items-form-container");
+	});
+    });
     </script>
     
 
@@ -79,7 +86,7 @@
 		<li><a href="{% url 'menu' %}" class="toggle">Toggle</a> {{eachform.name}} {{eachform.price}}${{eachform.calories}} <a class="delete" href="#">Delete</a></li>
 		{% endfor %}
 	      </ul>
-	      <button style="margin: 0 auto;" onclick="addMenu('items-form-container')"> Add another item </button><br>
+	      <button style="margin: 0 auto;"> Add another item </button><br>
 	      <input type="submit" value="Submit" name="menulistSubmit" />
 	    </form>
 	  </div>                
