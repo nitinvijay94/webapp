@@ -86,7 +86,7 @@
 		<li><a href="{% url 'menu' %}" class="toggle">Toggle</a> {{eachform.name}} {{eachform.price}}${{eachform.calories}} <a class="delete" href="#">Delete</a></li>
 		{% endfor %}
 	      </ul>
-	      <button id="addItem" style="margin: 0 auto;"> Add another item </button><br>
+	      <input type="submit" value="Add another item" name="addDishSubmit" /> 
 	      <input type="submit" value="Submit" name="menulistSubmit" />
 	    </form>
 	  </div>                

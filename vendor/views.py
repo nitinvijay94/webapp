@@ -123,6 +123,14 @@ def vendorMenu(request):
                 messages.error(request, "Error")
             return render(request, 'vendor/menu.html', {'logoUrl': usermap.resid.logo.url, 'menuUrl': usermap.resid.menu.url, 'formhour': formhour, 'formlogo':formlogo, 'formmenu':formmenu})
 
+        ######################################################################
+        #  actions taken when user add dish to the menu
+        if 'addDishSubmit' in request.POST:
+            setlist.append({'name': 'name', 'price': 0, 'calories': 0})
+            formset = dishFormSet(initial=setlist)
+            return render(request, 'vendor/menu.html', {'formset': formset})
+        
+
     setlist = getDishes(usermap)
     formset = dishFormSet(initial=setlist)
     formlogo = LogoForm()
