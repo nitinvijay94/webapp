@@ -56,10 +56,9 @@ def venderLogout(request):
 def vendorMenu(request):
     username = request.user.username  # get the login username
     usermap = UserMap.objects.get(username=username)  # get the table entry
-    dishFormSet = formset_factory(dishForm, extra=1)
+    dishFormSet = formset_factory(dishForm, extra=0)
     formlogo = LogoForm()
     formmenu = MenuForm()
-
 
     if request.method == 'POST':
 
@@ -68,19 +67,23 @@ def vendorMenu(request):
         if 'menulistSubmit' in request.POST:
             formset = dishFormSet(request.POST)
             if formset.is_valid():
-                predish = usermap.menu.firstdish
-                length=len(formset.cleaned_data)
-                for index in range(0,length-1):
-                    mydish = Dish(name="", price=0.0, calories=0.0, nextdish=None)
+                allDishes = Dish.objects.all()
+                allDishes.delete()  # first delete all existing entries
+                for form in formset:  # then add new entries
+                    mydish = Dish(name="", price=0.0, calories=0.0)
+                    mydish.name = form.cleaned_data['name']
+                    mydish.price = form.cleaned_data['price']
+                    mydish.calories = form.cleaned_data['calories']
                     mydish.save()
-                    predish.nextdish = mydish
-                    mydish.name = formset.cleaned_data[index]['name']
-                    mydish.price = formset.cleaned_data[index]['price']
-                    mydish.calories = formset.cleaned_data[index]['calories']
-                    predish = mydish
             else:
                 messages.error(request, "Error")
-            return render(request, 'vendor/menu.html', {'logoUrl':usermap.resid.logo.url, 'menuUrl': usermap.resid.menu.url, 'formhour':HourForm(instance=usermap.hours),  'formset': formset, 'formlogo':formlogo, 'formmenu':formmenu})
+            return render(request, 'vendor/menu.html',
+                          {'logoUrl': usermap.resid.logo.url,
+                           'menuUrl': usermap.resid.menu.url,
+                           'formhour': HourForm(instance=usermap.hours),
+                           'formset': formset,
+                           'formlogo': formlogo,
+                           'formmenu': formmenu})
 
         ######################################################################
         #  actions taken when user change the logo

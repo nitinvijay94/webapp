@@ -16,21 +16,9 @@ class Hours(models.Model):
         return self.name
 
 
-class Dish(models.Model):
-    name = models.CharField(max_length=100)
-    price = models.FloatField(default="7.00")
-    calories = models.FloatField(default="100.00")
-    nextdish = models.ForeignKey('self', null=True)
-    
-    def __str__(self):
-        return self.name
-
-
 class Menus(models.Model):
     name = models.CharField(max_length=100)
-    firstdish = models.OneToOneField(Dish) 
-    dishnum = models.IntegerField(default=1)
-    
+
     def __str__(self):
         return self.name
 
@@ -43,6 +31,16 @@ class ResID(models.Model):
     menu = models.ImageField(upload_to='menu/',
                              default='menu/pandamenu.jpeg',
                              max_length=200)
+    
+    def __str__(self):
+        return self.name
+
+
+class Dish(models.Model):
+    name = models.CharField(max_length=100)
+    price = models.FloatField(default="7.00")
+    calories = models.FloatField(default="100.00")
+    resid = models.ForeignKey(ResID)
     
     def __str__(self):
         return self.name
