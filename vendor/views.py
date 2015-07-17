@@ -149,7 +149,7 @@ def vendorMenu(request):
                           {'logoUrl': usermap.resid.logo.url,
                            'menuUrl': usermap.resid.menu.url,
                            'formset': formset,
-                           'formhour': formhour,
+                           'formhour': HourForm(instance=usermap.hours),
                            'formlogo': LogoForm(),
                            'formmenu': MenuForm(),
                            'formlocation': LocationForm(instance=usermap.loc)})
@@ -168,7 +168,7 @@ def vendorMenu(request):
                           {'logoUrl': usermap.resid.logo.url,
                            'menuUrl': usermap.resid.menu.url,
                            'formset': formset,
-                           'formhour': formhour,
+                           'formhour': HourForm(instance=usermap.hours),
                            'formlogo': LogoForm(),
                            'formmenu': MenuForm(),
                            'formlocation': LocationForm(instance=usermap.loc)})
