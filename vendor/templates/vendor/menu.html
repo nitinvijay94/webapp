@@ -54,9 +54,9 @@
 	menu.appendChild(newItem);
     }
 
-    /* add item */
+    /* add item : make sure to execute after django finishing rendering page */
     $(document).ready(function(){
-	$("items-form-container").click(function(){
+	$("addItem").click(function(){
             addMenu("items-form-container");
 	    alert("good");
 	});
@@ -87,7 +87,7 @@
 		<li><a href="{% url 'menu' %}" class="toggle">Toggle</a> {{eachform.name}} {{eachform.price}}${{eachform.calories}} <a class="delete" href="#">Delete</a></li>
 		{% endfor %}
 	      </ul>
-	      <button style="margin: 0 auto;"> Add another item </button><br>
+	      <button id="addItem" style="margin: 0 auto;"> Add another item </button><br>
 	      <input type="submit" value="Submit" name="menulistSubmit" />
 	    </form>
 	  </div>                
