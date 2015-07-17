@@ -19,6 +19,12 @@ class MenuForm(forms.Form):
     image = forms.ImageField()
 
 
+class LocationForm(ModelForm):
+    class Meta:
+        model = Location
+        fields = ['name', 'latitude', 'longitude']
+
+
 class HourForm(ModelForm):
     class Meta:
         model = Hours

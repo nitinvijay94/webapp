@@ -148,7 +148,7 @@ def vendorMenu(request):
                            'formset': formset,
                            'formhour': formhour,
                            'formlogo': LogoForm(),
-                           'formmenu': MenuForm()})
+                           'formmenu': MenuForm()})     
 
         ######################################################################
         #  actions taken when user add dish to the menu
@@ -161,7 +161,30 @@ def vendorMenu(request):
                            'formhour': HourForm(instance=usermap.hours),
                            'formlogo': LogoForm(),
                            'formmenu': MenuForm()})
+        
+        ######################################################################
+        # actions taken when user update location
+        if 'locSubmit' in request.POST:
+            formset = getFormSet(usermap.resid)
+            formloc = LocationForm(request.POST)
+            if formloc.is_valid():
+                usermap.loc.name = formloc.cleaned_data['name']
+                usermap.loc.latitude = formloc.cleaned_data['latitude']
+                usermap.loc.longitude = formloc.cleaned_data['longitude']
+                usermap.loc.save()
+            else:
+                messages.error(request, "Error")
 
+            return render(request, 'vendor/menu.html',
+                          {'logoUrl': usermap.resid.logo.url,
+                           'menuUrl': usermap.resid.menu.url,
+                           'formlocation': usermap.loc,
+                           'formset': formset,
+                           'formhour': formhour,
+                           'formlogo': LogoForm(),
+                           'formmenu': MenuForm()})
+
+            
     ######################################################################
     # default GET behaviour
     formset = getFormSet(usermap.resid)
