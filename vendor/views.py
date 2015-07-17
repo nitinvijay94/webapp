@@ -45,7 +45,8 @@ def vendorMenu(request):
     formlogo = LogoForm()
     formmenu = MenuForm()
     formhour = HourForm()
-    
+    formset = dishFormSet()
+
     if request.method == 'POST':
 
         ######################################################################
