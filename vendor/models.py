@@ -40,7 +40,7 @@ class Dish(models.Model):
 
 
 class Location(models.Model):
-    name = models.CharField(max_length=100)
+    address = models.CharField(max_length=100)
 
     # latitude and longitude in degrees
     # the default value is the poition of Atlanta

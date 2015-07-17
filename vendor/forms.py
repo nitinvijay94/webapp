@@ -22,7 +22,7 @@ class MenuForm(forms.Form):
 class LocationForm(ModelForm):
     class Meta:
         model = Location
-        fields = ['name', 'latitude', 'longitude']
+        fields = ['address', 'latitude', 'longitude']
 
 
 class HourForm(ModelForm):

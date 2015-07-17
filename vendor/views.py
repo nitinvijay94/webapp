@@ -168,7 +168,7 @@ def vendorMenu(request):
             formset = getFormSet(usermap.resid)
             formloc = LocationForm(request.POST)
             if formloc.is_valid():
-                usermap.loc.name = formloc.cleaned_data['name']
+                usermap.loc.address = formloc.cleaned_data['address']
                 usermap.loc.latitude = formloc.cleaned_data['latitude']
                 usermap.loc.longitude = formloc.cleaned_data['longitude']
                 usermap.loc.save()
