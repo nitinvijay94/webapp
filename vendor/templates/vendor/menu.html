@@ -35,7 +35,13 @@
 		<li><div  class="toggle">Toggle</div> {{eachform.name}} &nbsp&nbsp {{eachform.price}}$ &nbsp&nbsp {{eachform.calories}} &nbsp&nbsp Delete{{eachform.isdelete}} </li>
 		{% endfor %}
 	      </ul>
-	      <input type="submit" value="Add another item" name="addDishSubmit" /> 
+	      
+	      <ul class="todo-list">
+		<li>
+		  <input type="submit" value="Add another item" name="addDishSubmit" class="myButton" />
+		</li>
+	      </ul>
+	      
 	      <input type="submit" value="Submit" name="menulistSubmit" />
 	    </form>
 	  </div>                
