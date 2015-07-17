@@ -66,7 +66,8 @@ def getFormSet(resid, addNum=0):
 def vendorMenu(request):
     username = request.user.username  # get the login username
     usermap = UserMap.objects.get(username=username)  # get the table entry
-    
+    dishFormSet = formset_factory(dishForm, extra=0)
+
     if request.method == 'POST':
 
         ######################################################################
