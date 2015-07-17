@@ -11,6 +11,20 @@ from .serializers import ResIDSerializer, HoursSerializer
 from django.http import HttpResponse
 from django.forms.formsets import formset_factory
 
+
+def getDishes(usermap):
+    setlist = []
+    mydish = usermap.menu.firstdish
+    for i in range(0, 1000):
+        if mydish.nextdish is not None:
+            setlist.append({'name': mydish.name, 'price': mydish.price, 'calories': mydish.calories})
+            mydish = mydish.nextdish
+        else:
+            break
+
+    return setlist
+
+
 def venderLogin(request):
     state = ""
     username = password = ''
@@ -37,6 +51,7 @@ def venderLogout(request):
     return render(request, 'vendor/logout.html')
 
 
+
 @login_required(login_url='login')
 def vendorMenu(request):
     username = request.user.username  # get the login username
@@ -44,8 +59,7 @@ def vendorMenu(request):
     dishFormSet = formset_factory(dishForm, extra=1)
     formlogo = LogoForm()
     formmenu = MenuForm()
-    formhour = HourForm()
-    formset = dishFormSet()
+
 
     if request.method == 'POST':
 
@@ -109,21 +123,12 @@ def vendorMenu(request):
                 messages.error(request, "Error")
             return render(request, 'vendor/menu.html', {'logoUrl': usermap.resid.logo.url, 'menuUrl': usermap.resid.menu.url, 'formhour': formhour, 'formlogo':formlogo, 'formmenu':formmenu})
 
-    
- 
-    setlist=[]
-    mydish=usermap.menu.firstdish
-    for i in range(0,1000):
-        if mydish.nextdish != None:
-            setlist.append({'name': mydish.name, 'price': mydish.price, 'calories': mydish.calories})
-            mydish=mydish.nextdish
-        else:
-            break
-        formset = dishFormSet(initial=setlist)
-        formlogo = LogoForm()
-        formmenu = MenuForm()
-        formhour = HourForm(instance=usermap.hours)
-        
+    setlist = getDishes(usermap)
+    formset = dishFormSet(initial=setlist)
+    formlogo = LogoForm()
+    formmenu = MenuForm()
+    formhour = HourForm(instance=usermap.hours)
+
     return render(request, 'vendor/menu.html', {'logoUrl':usermap.resid.logo.url, 'menuUrl': usermap.resid.menu.url, 'formlogo':formlogo, 'formmenu':formmenu, 'formhour':formhour, 'formset': formset})
 
 
