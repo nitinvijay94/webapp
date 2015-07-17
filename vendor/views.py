@@ -178,7 +178,7 @@ def vendorMenu(request):
             return render(request, 'vendor/menu.html',
                           {'logoUrl': usermap.resid.logo.url,
                            'menuUrl': usermap.resid.menu.url,
-                           'formlocation': usermap.loc,
+                           'formlocation': LocationForm(instance=usermap.loc),
                            'formset': formset,
                            'formhour': formhour,
                            'formlogo': LogoForm(),
