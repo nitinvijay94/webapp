@@ -83,7 +83,7 @@
 	  <form action="{% url 'vendor.views.vendorMenu'%}" method="post" enctype="multipart/form-data">
 	     {% csrf_token %}
 	    <ul class="todo-list">
-	      {{ form.as_ul }}
+	      {{ formlocaion.as_ul }}
 	    </ul>
 	    
 	    <p style="text-align:center"><input type="submit" value="Submit" name="locSubmit" class="myButton2" /> </p>
