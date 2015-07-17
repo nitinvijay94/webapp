@@ -184,7 +184,6 @@ def vendorMenu(request):
                            'formlogo': LogoForm(),
                            'formmenu': MenuForm()})
 
-            
     ######################################################################
     # default GET behaviour
     formset = getFormSet(usermap.resid)
