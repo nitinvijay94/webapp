@@ -194,7 +194,8 @@ def vendorMenu(request):
                    'formset': formset,
                    'formhour': HourForm(instance=usermap.hours),
                    'formlogo': LogoForm(),
-                   'formmenu': MenuForm()})
+                   'formmenu': MenuForm(),
+                   'formlocation': LocationForm(instance=usermap.loc)})
 
 
 ######################################################################
