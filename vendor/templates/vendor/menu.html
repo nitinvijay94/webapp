@@ -15,24 +15,44 @@
     <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.5.0/jquery.min.js">
     </script>
     <script type="text/javascript">
-      $(document).ready(function() {
-      $('.add-item').click(function(ev) {
-        ev.preventDefault();
-        var count = $('#items-form-container').children().length;
-        var tmplMarkup = $('#item-template').html();
-        var compiledTmpl = tmplMarkup.replace(/__prefix__/g, count);
-        $('div#items-form-container').append(compiledTmpl);
+    $(document).ready(function() {
+	$('.add-item').click(function(ev) {
+            ev.preventDefault();
+            var count = $('#items-form-container').children().length;
+            var tmplMarkup = $('#item-template').html();
+            var compiledTmpl = tmplMarkup.replace(/__prefix__/g, count);
+            $('div#items-form-container').append(compiledTmpl);
 
-        // update form count
-        $('#id_item_items-TOTAL_FORMS').attr('value', count+1);
+            // update form count
+            $('#id_item_items-TOTAL_FORMS').attr('value', count+1);
 
-        // some animate to scroll to view our new form
-        $('html, body').animate({
+            // some animate to scroll to view our new form
+            $('html, body').animate({
                 scrollTop: $("#add-item-button").position().top-200
             }, 800);
-      });
-      });
+	});
+    });
     </script>
+    
+    <!-- js used to add another item in the menu -->
+    <script>
+    function addMenu(menuID) {
+	var menu = document.getElementById(menuID);
+	var newItem = document.createElement("li");
+        var newInput1 = document.createElement("input");
+        newInput1.setAttribute("value", "name");
+        var newInput2 = document.createElement("input");
+        newInput2.setAttribute("value", "0"); 
+        var newInput3 = document.createElement("input");
+        newInput3.setAttribute("value", "0");
+	
+        newItem.appendChild(newInput1);
+        newItem.appendChild(newInput2);
+        newItem.appendChild(newInput3);
+	menu.appendChild(newItem);
+    }
+    </script>
+    
 
   </head>
   
@@ -50,15 +70,15 @@
         <div id="view1">
 	  <div style="width: 700px; margin: 0 auto; padding: 10px 0 10px;">
 	    <form action="{% url 'vendor.views.vendorMenu'%}" method="post" enctype="multipart/form-data">
-	    {% csrf_token %}
-	    {{ formset.management_form }}
-	    <ul class="todo-list" id="items-form-container">
-	      {% for eachform in formset %}
-	      <li><a href="{% url 'menu' %}" class="toggle">Toggle</a> {{eachform.name}} {{eachform.price}}${{eachform.calories}} <a class="delete" href="#">Delete</a></li>
-	      {% endfor %}
-	    </ul>
-	    <a id="add-item-button" href="#" class="btn btn-info add-item">Add another item</a><br>
-	    <input type="submit" value="Submit" name="menulistSubmit" />
+	      {% csrf_token %}
+	      {{ formset.management_form }}
+	      <ul class="todo-list" id="items-form-container">
+		{% for eachform in formset %}
+		<li><a href="{% url 'menu' %}" class="toggle">Toggle</a> {{eachform.name}} {{eachform.price}}${{eachform.calories}} <a class="delete" href="#">Delete</a></li>
+		{% endfor %}
+	      </ul>
+	      <button style="margin: 0 auto;" onclick="addMenu('items-form-container')"> Add another item </button>
+	      <input type="submit" value="Submit" name="menulistSubmit" />
 	    </form>
 	  </div>                
         </div>
@@ -83,7 +103,7 @@
 	    {{formhour.s}}<br>
 	    <label>Sunday:</label>
 	    {{formhour.h}}<br>
-	  <input type="submit" value="Submit" name="hoursSubmit" />
+	    <input type="submit" value="Submit" name="hoursSubmit" />
 	  </form>
         </div>
         <div id="view3">

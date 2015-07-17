@@ -45,6 +45,7 @@ def vendorMenu(request):
     formlogo = LogoForm()
     formmenu = MenuForm()
     if request.method == 'POST':
+        
         if 'menulistSubmit' in request.POST:
             formset = dishFormSet(request.POST)
             if formset.is_valid():
@@ -61,6 +62,7 @@ def vendorMenu(request):
             else:
                 messages.error(request, "Error")
             return render(request, 'vendor/menu.html', {'logoUrl':usermap.resid.logo.url, 'menuUrl': usermap.resid.menu.url, 'formhour':HourForm(instance=usermap.hours),  'formset': formset, 'formlogo':formlogo, 'formmenu':formmenu})
+        
         if 'logoSubmit' in request.POST:
             formlogo = LogoForm(request.POST, request.FILES)
             if formlogo.is_valid():
@@ -69,6 +71,7 @@ def vendorMenu(request):
             else:
                 messages.error(request, "Error")
             return render(request, 'vendor/menu.html', {'logoUrl': usermap.resid.logo.url, 'menuUrl': usermap.resid.menu.url, 'formhour':HourForm(instance=usermap.hours), 'formlogo': formlogo, 'formmenu':formmenu})
+        
         if 'menuSubmit' in request.POST:
             formmenu = MenuForm(request.POST, request.FILES)
             if formmenu.is_valid():
@@ -77,6 +80,7 @@ def vendorMenu(request):
             else:
                 messages.error(request, "Error")
             return render(request, 'vendor/menu.html', {'logoUrl': usermap.resid.logo.url, 'menuUrl': usermap.resid.menu.url, 'formhour':HourForm(instance=usermap.hours), 'formmenu': formmenu, 'formlogo':formlogo})
+        
         if 'hoursSubmit' in request.POST:
             formhour = HourForm(request.POST)
             if formhour.is_valid():
