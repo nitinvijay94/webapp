@@ -86,7 +86,8 @@ def vendorMenu(request):
                            'formhour': HourForm(instance=usermap.hours),
                            'formset': formset,
                            'formlogo': LogoForm(),
-                           'formmenu': MenuForm()})
+                           'formmenu': MenuForm(),
+                           'formlocation': LocationForm(instance=usermap.loc)})
 
         ######################################################################
         #  actions taken when user change the logo
@@ -104,7 +105,8 @@ def vendorMenu(request):
                            'formset': formset,
                            'formhour': HourForm(instance=usermap.hours),
                            'formlogo': LogoForm(),
-                           'formmenu': MenuForm()})
+                           'formmenu': MenuForm(),
+                           'formlocation': LocationForm(instance=usermap.loc)})
 
         ######################################################################
         #  actions taken when user change the menu picture
@@ -122,7 +124,8 @@ def vendorMenu(request):
                            'formset': formset,
                            'formhour': HourForm(instance=usermap.hours),
                            'formmenu': LogoForm(),
-                           'formlogo': MenuForm()})
+                           'formlogo': MenuForm(),
+                           'formlocation': LocationForm(instance=usermap.loc)})
 
         ######################################################################
         #  actions taken when user change the hours
@@ -148,7 +151,8 @@ def vendorMenu(request):
                            'formset': formset,
                            'formhour': formhour,
                            'formlogo': LogoForm(),
-                           'formmenu': MenuForm()})     
+                           'formmenu': MenuForm(),
+                           'formlocation': LocationForm(instance=usermap.loc)})
 
         ######################################################################
         #  actions taken when user add dish to the menu
@@ -160,7 +164,8 @@ def vendorMenu(request):
                            'formset': formset,
                            'formhour': HourForm(instance=usermap.hours),
                            'formlogo': LogoForm(),
-                           'formmenu': MenuForm()})
+                           'formmenu': MenuForm(),
+                           'formlocation': LocationForm(instance=usermap.loc)})
         
         ######################################################################
         # actions taken when user update location
