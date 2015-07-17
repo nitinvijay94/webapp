@@ -12,19 +12,6 @@ from django.http import HttpResponse
 from django.forms.formsets import formset_factory
 
 
-def getDishes(usermap):
-    setlist = []
-    mydish = usermap.menu.firstdish
-    for i in range(0, 1000):
-        if mydish.nextdish is not None:
-            setlist.append({'name': mydish.name, 'price': mydish.price, 'calories': mydish.calories})
-            mydish = mydish.nextdish
-        else:
-            break
-
-    return setlist
-
-
 def venderLogin(request):
     state = ""
     username = password = ''
