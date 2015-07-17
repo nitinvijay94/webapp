@@ -81,9 +81,19 @@
 
 	<div id="view3">
 	  <form action="{% url 'vendor.views.vendorMenu'%}" method="post" enctype="multipart/form-data">
-	     {% csrf_token %}
-	    <ul>
-	      {{ formlocaion.as_ul }}
+	    {% csrf_token %}
+	    <ul class="todo-list">
+              <li>
+		<label><b>Location: </b></label>
+		{{formlocation.address}}
+	      </li>
+	      
+	      <li>
+		<label><b>Latitude: </b></label>
+		{{formlocation.latitude}}
+		&nbsp &nbsp &nbsp &nbsp
+		<label><b>Longitude: </b></label>
+		{{formlocation.longitude}}
 	    </ul>
 	    
 	    <p style="text-align:center"><input type="submit" value="Submit" name="locSubmit" class="myButton2" /> </p>
