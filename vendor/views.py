@@ -60,7 +60,8 @@ def getFormSet(resid, addNum=0):
     for i in range(addNum):
         data.append({'name': "name", 'price': 0, 'calories': 0})
 
-    return disFormset(initial=data, extra=0)
+    dishFormSet = formset_factory(dishForm, extra=0)
+    return dishFormSet(initial=data)
 
 
 @login_required(login_url='login')
@@ -78,6 +79,7 @@ def vendorMenu(request):
         if 'menulistSubmit' in request.POST:
             formset = dishFormSet(request.POST)
             if formset.is_valid():
+                print formset
                 allDishes = Dish.objects.all()
                 allDishes.delete()  # first delete all existing entries
                 for form in formset:  # then add new entries
@@ -159,6 +161,7 @@ def vendorMenu(request):
             return render(request, 'vendor/menu.html',
                           {'logoUrl': usermap.resid.logo.url,
                            'menuUrl': usermap.resid.menu.url,
+                           'formset': formset,
                            'formhour': HourForm(instance=usermap.hours),
                            'formlogo': formlogo,
                            'formmenu': formmenu})
@@ -167,6 +170,7 @@ def vendorMenu(request):
     return render(request, 'vendor/menu.html',
                   {'logoUrl': usermap.resid.logo.url,
                    'menuUrl': usermap.resid.menu.url,
+                   'formset': formset,
                    'formhour': HourForm(instance=usermap.hours),
                    'formlogo': formlogo,
                    'formmenu': formmenu})
