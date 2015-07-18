@@ -4,19 +4,19 @@ from vendor.models import *
 
 class LocationSerializer(serializers.ModelSerializer):
     class Mata:
-        models = Location
+        model = Location
         fields = ('address', 'latitude', 'longitude')
 
 
 class HoursSerializer(serializers.ModelSerializer):
     class Meta:
-        models = Hours
+        model = Hours
         fields = ('open_time', 'close_time', 'm', 't', 'w', 'r', 'f', 's', 'h', 'leftTime')
 
 
 class DishSerializer(serializers.ModelSerializer):
     class Meta:
-        models = Dish
+        model = Dish
         fields = ('name', 'price', 'calories', 'resid')
         
 
@@ -34,7 +34,7 @@ class UserMapSerializer(serializers.ModelSerializer):
     resid = ResIDSerializer(read_only=True)
     
     class Meta:
-        models = UserMap
+        model = UserMap
         fields('username', 'resid', 'hours', 'loc')
 
 
