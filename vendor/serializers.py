@@ -3,7 +3,7 @@ from vendor.models import *
 
 
 class LocationSerializer(serializers.ModelSerializer):
-    class Mata:
+    class Meta:
         model = Location
         fields = ('address', 'latitude', 'longitude')
 
