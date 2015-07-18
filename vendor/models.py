@@ -34,7 +34,7 @@ class Dish(models.Model):
     name = models.CharField(max_length=100)
     price = models.FloatField(default="7.00")
     calories = models.FloatField(default="100.00")
-    resid = models.ForeignKey(ResID)
+    resid = models.ForeignKey(ResID, related_name="dishes")
 
     def __str__(self):
         return self.name
