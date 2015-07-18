@@ -54,9 +54,9 @@ class Location(models.Model):
 
 class UserMap(models.Model):
     username = models.CharField(max_length=100)
-    resid = models.OneToOneField(ResID)
-    hours = models.OneToOneField(Hours)
-    loc = models.OneToOneField(Location)
+    resid = models.OneToOneField(ResID, related_name="usermap")
+    hours = models.OneToOneField(Hours, related_name="usermap")
+    loc = models.OneToOneField(Location, related_name="usermap")
 
     def __str__(self):
         return self.username

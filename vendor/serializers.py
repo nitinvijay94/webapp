@@ -18,14 +18,6 @@ class DishSerializer(serializers.ModelSerializer):
     class Meta:
         model = Dish
         fields = ('name', 'price', 'calories', 'resid')
-        
-
-class ResIDSerializer(serializers.ModelSerializer):
-    dishes = DishSerializer(many=True, read_only=True)
-
-    class Meta:
-        model = ResID
-        fields = ('name', 'logo', 'menu', 'dishes')
 
 
 class UserMapSerializer(serializers.ModelSerializer):
@@ -38,7 +30,12 @@ class UserMapSerializer(serializers.ModelSerializer):
         fields = ('username', 'resid', 'hours', 'loc')
 
 
+class ResIDSerializer(serializers.ModelSerializer):
+    dishes = DishSerializer(many=True, read_only=True)
 
+    class Meta:
+        model = ResID
+        fields = ('name', 'logo', 'menu', 'dishes', 'usermap')
 
 
 
