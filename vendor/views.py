@@ -7,7 +7,7 @@ from django.core.urlresolvers import reverse
 from rest_framework import viewsets
 from .models import UserMap, ResID, Hours
 from .forms import *
-from .serializers import ResIDSerializer, HoursSerializer
+from . import serializers 
 from django.http import HttpResponse
 from django.forms.formsets import formset_factory
 
@@ -231,9 +231,9 @@ class ResIDViewSet(viewsets.ReadOnlyModelViewSet):
     This viewset automatically provides `list` and `detail` actions.
     """
     queryset = ResID.objects.all()
-    serializer_class = ResIDSerializer
+    serializer_class = serializers.ResIDSerializer
 
 
 class UserMapViewSet(viewsets.ReadOnlyModelViewSet):
     queryset = UserMap.objects.all()
-    serializers_class = UserMapSerializer
+    serializers_class = serializers.UserMapSerializer
