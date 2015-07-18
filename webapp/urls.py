@@ -8,6 +8,7 @@ from vendor import views
 # Create a router and register our viewsets with it.
 router = DefaultRouter()
 router.register(r'resid', views.ResIDViewSet)
+router.register(r'usermap', views.UserMapViewSet)
 
 urlpatterns = patterns('',
                        url(r'^admin/', include(admin.site.urls)),
