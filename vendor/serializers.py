@@ -35,7 +35,7 @@ class UserMapSerializer(serializers.ModelSerializer):
     
     class Meta:
         model = UserMap
-        fields('username', 'resid', 'hours', 'loc')
+        fields = ('username', 'resid', 'hours', 'loc')
 
 
 
