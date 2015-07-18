@@ -232,3 +232,8 @@ class ResIDViewSet(viewsets.ReadOnlyModelViewSet):
     """
     queryset = ResID.objects.all()
     serializer_class = ResIDSerializer
+
+
+class UserMapViewSet(viewsets.ReadOnlyModelViewSet):
+    queryset = UserMap.objects.all()
+    serializers_class = UserMapSerializer
