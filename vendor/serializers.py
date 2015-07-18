@@ -23,7 +23,6 @@ class DishSerializer(serializers.ModelSerializer):
 class UserMapSerializer(serializers.ModelSerializer):
     loc = LocationSerializer(read_only=True)
     hours = HoursSerializer(read_only=True)
-    resid = ResIDSerializer(read_only=True)
     
     class Meta:
         model = UserMap
