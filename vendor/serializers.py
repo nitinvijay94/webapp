@@ -21,8 +21,8 @@ class DishSerializer(serializers.ModelSerializer):
         
 
 class ResIDSerializer(serializers.ModelSerializer):
-    dishes = DishSerializer(many=True, read_only=True)
-    
+    dishes = serializers.RelatedField(many=True, read_only=True)
+
     class Meta:
         model = ResID
         fields = ('name', 'logo', 'menu', 'dishes')
