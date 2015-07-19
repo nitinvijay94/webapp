@@ -27,7 +27,7 @@ class Hours(models.Model):
     leftTime = models.TimeField(blank=True, default='1:00')  # only works for food truck
 
     def __str__(self):
-        return self.open_time
+        return self.leftTime
 
 
 class ResID(models.Model):
