@@ -2,8 +2,21 @@ from django.db import models
 
 
 class Hours(models.Model):
-    open_time = models.TimeField(blank=True, default='8:00')
-    close_time = models.TimeField(blank=True, default='20:00')
+    open_time_m = models.TimeField(blank=True, default='8:00')
+    close_time_m = models.TimeField(blank=True, default='20:00')
+    open_time_t = models.TimeField(blank=True, default='8:00')
+    close_time_t = models.TimeField(blank=True, default='20:00')
+    open_time_w = models.TimeField(blank=True, default='8:00')
+    close_time_w = models.TimeField(blank=True, default='20:00')
+    open_time_r = models.TimeField(blank=True, default='8:00')
+    close_time_r = models.TimeField(blank=True, default='20:00')
+    open_time_f = models.TimeField(blank=True, default='8:00')
+    close_time_f = models.TimeField(blank=True, default='20:00')
+    open_time_s = models.TimeField(blank=True, default='8:00')
+    close_time_s = models.TimeField(blank=True, default='20:00')
+    open_time_h = models.TimeField(blank=True, default='8:00')
+    close_time_h = models.TimeField(blank=True, default='20:00')
+
     m = models.BooleanField(blank=True, default=True)
     t = models.BooleanField(blank=True, default=True)
     w = models.BooleanField(blank=True, default=True)
