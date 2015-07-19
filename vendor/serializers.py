@@ -11,7 +11,14 @@ class LocationSerializer(serializers.ModelSerializer):
 class HoursSerializer(serializers.ModelSerializer):
     class Meta:
         model = Hours
-        fields = ('open_time', 'close_time', 'm', 't', 'w', 'r', 'f', 's', 'h', 'leftTime')
+        fields = ('open_time_m', 'close_time_m',
+                'open_time_t', 'close_time_t', 
+                'open_time_w', 'close_time_w', 
+                'open_time_r', 'close_time_r', 
+                'open_time_f', 'close_time_f', 
+                'open_time_s', 'close_time_s', 
+                'open_time_h', 'close_time_h', 
+                'm', 't', 'w', 'r', 'f', 's', 'h', 'leftTime')
 
 
 class DishSerializer(serializers.ModelSerializer):
