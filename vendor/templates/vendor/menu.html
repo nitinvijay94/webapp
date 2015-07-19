@@ -48,32 +48,54 @@
           <form action="{% url 'vendor.views.vendorMenu'%}" method="post" enctype="multipart/form-data">
 	    {% csrf_token %}
 	    <ul class="todo-list" id="items-form-container">
-	      <label>Opentime:</label>
-	      {{formhour.open_time}}<br></ul>
-	    <ul class="todo-list" id="items-form-container">
-	      <label>Closetime:</label>
-	      {{formhour.close_time}}<br></ul>
-	    <ul class="todo-list" id="items-form-container">
 	      <label>Monday:</label>
-	      {{formhour.m}}<br></ul>
+	      {{formhour.m}}
+	      <label>Opentime:</label>
+	      {{formhour.open_time_m}}
+	      <label>Closetime:</label>
+	      {{formhour.close_time_m}}<br></ul>
 	    <ul class="todo-list" id="items-form-container">
 	      <label>Tuesday:</label>
-	      {{formhour.t}}<br></ul>
+	      {{formhour.t}}
+	      <label>Opentime:</label>
+	      {{formhour.open_time_t}}
+	      <label>Closetime:</label>
+	      {{formhour.close_time_t}}<br></ul>
 	    <ul class="todo-list" id="items-form-container">
 	      <label>Wednesday:</label>
-	      {{formhour.w}}<br></ul>
+	      {{formhour.w}}
+	      <label>Opentime:</label>
+	      {{formhour.open_time_w}}
+	      <label>Closetime:</label>
+	      {{formhour.close_time_w}}<br></ul>
 	    <ul class="todo-list" id="items-form-container">
 	      <label>Thurday:</label>
-	      {{formhour.r}}<br></ul>
+	      {{formhour.r}}
+	      <label>Opentime:</label>
+	      {{formhour.open_time_r}}
+	      <label>Closetime:</label>
+	      {{formhour.close_time_r}}<br></ul>
 	    <ul class="todo-list" id="items-form-container">
 	      <label>Friday:</label>
-	      {{formhour.f}}<br></ul>
+	      {{formhour.f}}
+	      <label>Opentime:</label>
+	      {{formhour.open_time_f}}
+	      <label>Closetime:</label>
+	      {{formhour.close_time_f}}<br></ul>
 	    <ul class="todo-list" id="items-form-container">
 	      <label>Saturday:</label>
-	      {{formhour.s}}<br></ul>
+	      {{formhour.s}}
+	      <label>Opentime:</label>
+	      {{formhour.open_time_s}}
+	      <label>Closetime:</label>
+	      {{formhour.close_time_s}}<br></ul>
 	    <ul class="todo-list" id="items-form-container">
 	      <label>Sunday:</label>
-	      {{formhour.h}}<br></ul>
+	      {{formhour.h}}
+	      <label>Opentime:</label>
+	      {{formhour.open_time_h}}
+	      <label>Closetime:</label>
+	      {{formhour.close_time_h}}<br></ul>
 
 	    <p style="text-align:center"><input type="submit" value="Submit" name="hoursSubmit" class="myButton2" /> </p>
 	  </form>

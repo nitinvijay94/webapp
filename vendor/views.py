@@ -133,8 +133,21 @@ def vendorMenu(request):
             formset = getFormSet(usermap.resid)
             formhour = HourForm(request.POST)
             if formhour.is_valid():
-                usermap.hours.open_time = formhour.cleaned_data['open_time']
-                usermap.hours.close_time = formhour.cleaned_data['close_time']
+                usermap.hours.open_time_m = formhour.cleaned_data['open_time_m']
+                usermap.hours.close_time_m = formhour.cleaned_data['close_time_m']
+                usermap.hours.open_time_t = formhour.cleaned_data['open_time_t']
+                usermap.hours.close_time_t = formhour.cleaned_data['close_time_t']
+                usermap.hours.open_time_w = formhour.cleaned_data['open_time_w']
+                usermap.hours.close_time_w = formhour.cleaned_data['close_time_w']
+                usermap.hours.open_time_r = formhour.cleaned_data['open_time_r']
+                usermap.hours.close_time_r = formhour.cleaned_data['close_time_r']
+                usermap.hours.open_time_f = formhour.cleaned_data['open_time_f']
+                usermap.hours.close_time_f = formhour.cleaned_data['close_time_f']
+                usermap.hours.open_time_s = formhour.cleaned_data['open_time_s']
+                usermap.hours.close_time_s = formhour.cleaned_data['close_time_s']
+                usermap.hours.open_time_h = formhour.cleaned_data['open_time_h']
+                usermap.hours.close_time_h = formhour.cleaned_data['close_time_h']
+
                 usermap.hours.m = formhour.cleaned_data['m']
                 usermap.hours.t = formhour.cleaned_data['t']
                 usermap.hours.w = formhour.cleaned_data['w']
