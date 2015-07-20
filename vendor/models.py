@@ -32,6 +32,10 @@ class Hours(models.Model):
 
 class ResID(models.Model):
     name = models.CharField(max_length=100)
+    tag = models.CharField(max_length=100, default="rest")
+    url = models.CharField(max_length=1000, blank=True)
+    menuFile = models.FileField(max_length=100, blank=True)
+    fileType = models.CharField(max_length=100, blank=True, default="pdf")
     logo = models.ImageField(upload_to='logo/',
                              default='logo/PandaLogo.png',
                              max_length=60)

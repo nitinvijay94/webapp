@@ -42,7 +42,8 @@ class ResIDSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = ResID
-        fields = ('name', 'logo', 'menu', 'dishes', 'usermap')
+        fields = ('name', 'logo', 'menu', 'tag', 'url', 'menuFile',
+                  'fileType', 'dishes', 'usermap')
 
 
 
