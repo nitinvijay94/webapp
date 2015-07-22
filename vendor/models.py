@@ -17,11 +17,11 @@ class Hours(models.Model):
     open_time_h = models.TimeField(blank=True, default='8:00')
     close_time_h = models.TimeField(blank=True, default='20:00')
 
-    m = models.BooleanField(blank=True, default=True)
-    t = models.BooleanField(blank=True, default=True)
-    w = models.BooleanField(blank=True, default=True)
-    r = models.BooleanField(blank=True, default=True)
-    f = models.BooleanField(blank=True, default=True)
+    m = models.BooleanField(blank=True, default=False)
+    t = models.BooleanField(blank=True, default=False)
+    w = models.BooleanField(blank=True, default=False)
+    r = models.BooleanField(blank=True, default=False)
+    f = models.BooleanField(blank=True, default=False)
     s = models.BooleanField(blank=True, default=False)
     h = models.BooleanField(blank=True, default=False)
     leftTime = models.TimeField(blank=True, default='1:00')  # only works for food truck
@@ -31,11 +31,12 @@ class Hours(models.Model):
 
 
 class ResID(models.Model):
-    name = models.CharField(max_length=100)
-    tag = models.CharField(max_length=100, default="rest")
+    name = models.CharField(max_length=100, unique = True)
+    tags = models.CharField(max_length=1000, default="#GT")
     url = models.CharField(max_length=1000, blank=True)
     menuFile = models.FileField(max_length=100, blank=True)
-    fileType = models.CharField(max_length=100, blank=True, default="pdf")
+    description = models.CharField(max_length=1000, blank=True)
+    #fileType = models.CharField(max_length=100, blank=True, default="pdf")
     logo = models.ImageField(upload_to='logo/',
                              default='logo/PandaLogo.png',
                              max_length=60)
@@ -59,7 +60,7 @@ class Dish(models.Model):
 
 class Location(models.Model):
     address = models.CharField(max_length=100)
-
+    details = models.CharField(max_length=300, blank=True)
     # latitude and longitude in degrees
     # the default value is the poition of Atlanta
     latitude = models.FloatField(default="33.7")

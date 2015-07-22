@@ -10,6 +10,9 @@ from .forms import *
 from . import serializers 
 from django.http import HttpResponse
 from django.forms.formsets import formset_factory
+from rest_framework.views import APIView
+from rest_framework.response import Response
+from rest_framework import permissions
 
 
 def venderLogin(request):
@@ -245,4 +248,18 @@ class ResIDViewSet(viewsets.ReadOnlyModelViewSet):
     """
     queryset = ResID.objects.all()
     serializer_class = serializers.ResIDSerializer
+
+
+class TagsView(APIView):
+  permission_classes = (permissions.IsAuthenticatedOrReadOnly,)
+  def get(self, request, format=None):
+    tags = request.GET.get('tags','')
+    tagList = [] + tags.split(',')
+    resIDs = ResID.objects.all()
+    for tag in tagList:
+      resIDs = resIDs.filter(tags__icontains = tag)
+    serializer = serializers.ResIDSerializer(resIDs, many=True)
+    return Response(serializer.data)
+
+
 

@@ -5,7 +5,7 @@ from vendor.models import *
 class LocationSerializer(serializers.ModelSerializer):
     class Meta:
         model = Location
-        fields = ('address', 'latitude', 'longitude')
+        fields = ('address', 'details', 'latitude', 'longitude')
 
 
 class HoursSerializer(serializers.ModelSerializer):
@@ -42,8 +42,8 @@ class ResIDSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = ResID
-        fields = ('name', 'logo', 'menu', 'tag', 'url', 'menuFile',
-                  'fileType', 'dishes', 'usermap')
+        fields = ('name', 'logo', 'menu', 'url', 'menuFile',
+                  'tags', 'dishes', 'usermap')
 
 
 

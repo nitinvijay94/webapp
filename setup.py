@@ -12,7 +12,7 @@ User.objects.create_user('starbucks', 'starbucks@gatech.edu', 'starbucks')
 # create serveral rows in the table
 from vendor.models import *
 
-resid1 = ResID(name='panda', logo='logo/Pandalogo.png', menu='menu/pandamenu.jpeg')
+resid1 = ResID(name='panda', logo='logo/Pandalogo.png', menu='menu/pandamenu.jpeg', tags="#Asian #Bubble Tea #Noodles #Student Center")
 resid1.save()
 hours1 = Hours()
 hours1.save()
@@ -27,7 +27,7 @@ loc1.save()
 usermap1 = UserMap(username='panda', resid=resid1, hours=hours1, loc=loc1)
 usermap1.save()
 
-resid2 = ResID(name='Chickenfila', logo='logo/chickenfilalogo.jpeg', menu='menu/chickenfilamenu.jpg')
+resid2 = ResID(name='Chickenfila', logo='logo/chickenfilalogo.jpeg', menu='menu/chickenfilamenu.jpg', tags="#Chicken #Shakes #Sandwich #Burgers #Student Center")
 resid2.save()
 hours2 = Hours()
 hours2.save()
@@ -43,7 +43,7 @@ usermap2 = UserMap(username='chickenfila', resid=resid2, hours=hours2, loc=loc2)
 usermap2.save()
 
 # food truck
-resid3 = ResID(name='yumbii', logo='logo/yumbiilogo.jpeg', menu='menu/yumbiimenu.jpg')
+resid3 = ResID(name='yumbii', logo='logo/yumbiilogo.jpeg', menu='menu/yumbiimenu.jpg', tags="#food truck #Tacos #Mexican #Cheap #Tech Greeen")
 resid3.save()
 hours3 = Hours(leftTime='02:20')
 hours3.save()
@@ -57,7 +57,7 @@ usermap3 = UserMap(username='yumbii', resid=resid3, hours=hours3, loc=loc3)
 usermap3.save()
 
 #dining hall
-resid4 = ResID(name='northavenue', logo='logo/northavenuelogo.jpeg', menu='menu/northavenuemenu.png')
+resid4 = ResID(name='northavenue', logo='logo/northavenuelogo.jpeg', menu='menu/northavenuemenu.png', tags="#GTDining #Dining hall #Meal Plan #Dining Dollars #East Campus")
 resid4.save()
 hours4 = Hours()
 hours4.save()
@@ -71,7 +71,7 @@ usermap4 = UserMap(username='northavenue', resid=resid4, hours=hours4, loc=loc4)
 usermap4.save()
 
 #food court
-resid5 = ResID(name='essentialeats', logo='logo/essentialeatslogo.jpeg', menu='menu/essentialeatsmenu.png')
+resid5 = ResID(name='essentialeats', logo='logo/essentialeatslogo.jpeg', menu='menu/essentialeatsmenu.png', tags="#GTDining #Student Center #Meal Plan #Dining Dollars #Healthy")
 resid5.save()
 hours5 = Hours()
 hours5.save()
@@ -85,7 +85,7 @@ usermap5 = UserMap(username='essentialeats', resid=resid5, hours=hours5, loc=loc
 usermap5.save()
 
 #inside building
-resid6 = ResID(name='starbucks', logo='logo/starbuckslogo.png', menu='menu/starbucksmenu.jpg')
+resid6 = ResID(name='starbucks', logo='logo/starbuckslogo.png', menu='menu/starbucksmenu.jpg', tags="#Coffee #Cafe #Cosy #Frappucinos #Latte, #CULC, #Clough")
 resid6.save()
 hours6 = Hours()
 hours6.save()

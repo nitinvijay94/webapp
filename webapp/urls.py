@@ -14,4 +14,5 @@ urlpatterns = patterns('',
                        url(r'^vendor/', include('vendor.urls')),
                        url(r'^', include(router.urls)),
                        url(r'^api-auth/', include('rest_framework.urls', namespace='rest_framework')),
+                       url(r'^search/', views.TagsView.as_view(), name='TagsView'),
 ) + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
